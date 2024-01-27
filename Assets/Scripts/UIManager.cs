@@ -6,6 +6,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public Linker mLinker;
     public GameObject mOvelray;
     public TMP_Text mTxtQuest;
     public TMP_Text mTxtScore;
@@ -29,5 +30,9 @@ public class UIManager : MonoBehaviour
         mBtnFinish.interactable = isEnabled;
 
         mTxtSpaceToContinue.gameObject.SetActive(!isEnabled);
+    }
+
+    public void PasueGame(){
+        mLinker.mGameManager.PasueGame();
     }
 }
