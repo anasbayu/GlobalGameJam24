@@ -13,7 +13,7 @@ public class QuestManager : MonoBehaviour
     int lastQuestIndex = 0;
     public bool isAbleToContinue = false;
 
-    void Start(){
+    void Start(){        
         GetRandomQuest();
     }
 

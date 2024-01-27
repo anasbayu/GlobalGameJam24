@@ -10,4 +10,5 @@ public class Linker : MonoBehaviour
     public HairBanks mHairBanks;
     public ExpressionBanks mExpressionBanks; 
     public QuestManager mQuestManager;
+    public AudioManager mAudioManager;
 }

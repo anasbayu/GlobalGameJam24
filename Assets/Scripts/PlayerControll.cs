@@ -6,7 +6,13 @@ public class PlayerControll : MonoBehaviour{
     public Linker mLinker;
     float speed = 10f;
     public GameObject rambutPos;
-    public GameObject currRambut;
+    public GameObject currRambut, currEkspresi;
+
+    void Start(){
+        // Randomize NPC expression & hairstyle.
+        SwapRambut();
+        SpawnEkspresi("satisfied");
+    }
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.Escape)){
@@ -16,6 +22,7 @@ public class PlayerControll : MonoBehaviour{
         if(Input.GetKeyDown(KeyCode.Space) && mLinker.mQuestManager.isAbleToContinue){
             mLinker.mQuestManager.GetRandomQuest();
             mLinker.mUIManager.EnableButton(true);
+            SpawnEkspresi("satisfied");
         }
     }
 
@@ -28,9 +35,27 @@ public class PlayerControll : MonoBehaviour{
         currRambut.gameObject.name = tmpRambut.gameObject.name;
     }
 
+    public void SpawnEkspresi(string expression){
+        GameObject tmpEkspresi = mLinker.mExpressionBanks.GetExpression(expression);
+        
+        if(currEkspresi != null){
+            Destroy(currEkspresi);
+        }
+        currEkspresi = Instantiate(tmpEkspresi, rambutPos.transform.position, Quaternion.identity);
+        currEkspresi.gameObject.name = tmpEkspresi.gameObject.name;
+    }
+
     public void Finish(){
         // if(mLinker.mQuestManager.isAbleToContinue){
-            mLinker.mQuestManager.CheckQuest(currRambut.gameObject.name);   
+            bool isSatisfied = mLinker.mQuestManager.CheckQuest(currRambut.gameObject.name);   
+            if(isSatisfied){
+                mLinker.mAudioManager.PlaySFX("Clown");
+                SpawnEkspresi("satisfied");
+            }else{
+                string[] modes = {"Laugh", "Shocked"};
+                mLinker.mAudioManager.PlaySFX(modes[Random.Range(0,modes.Length)]);
+                SpawnEkspresi("disatisfied");
+            }
             mLinker.mUIManager.EnableButton(false);
         // }
     }
