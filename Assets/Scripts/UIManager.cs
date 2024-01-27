@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text mTxtQuest;
     public TMP_Text mTxtScore;
     public TMP_Text mTxtSpaceToContinue;
-    public Button mBtnFinish;
+    public Button mBtnFinish, mBtnSwap;
 
 
     void Start(){
@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     public void EnableButton(bool isEnabled){
         mBtnFinish.gameObject.SetActive(isEnabled);
+        mBtnSwap.enabled = isEnabled;
         mTxtSpaceToContinue.gameObject.SetActive(!isEnabled);
     }
 

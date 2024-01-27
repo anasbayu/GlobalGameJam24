@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip mShocked, mLaugh, mClown;
+    public AudioClip mShocked, mLaugh, mClown, mSnapshoot;
     public AudioSource mSourceSFX;
 
     public void PlaySFX(string mode){
@@ -16,6 +16,9 @@ public class AudioManager : MonoBehaviour
         }
         if(mode == "Clown"){
             mSourceSFX.clip = mClown;
+        }
+        if(mode == "Snapshoot"){
+            mSourceSFX.clip = mSnapshoot;
         }
         mSourceSFX.Play();
     }
