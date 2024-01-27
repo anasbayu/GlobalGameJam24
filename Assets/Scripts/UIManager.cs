@@ -27,8 +27,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void EnableButton(bool isEnabled){
-        mBtnFinish.interactable = isEnabled;
-
+        mBtnFinish.gameObject.SetActive(isEnabled);
         mTxtSpaceToContinue.gameObject.SetActive(!isEnabled);
     }
 
