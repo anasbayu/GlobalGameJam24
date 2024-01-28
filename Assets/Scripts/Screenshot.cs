@@ -17,6 +17,8 @@ public class Screenshot : MonoBehaviour
 
     IEnumerator RecordFrame()
     {
+        mLinker.mCamControll.PrepareCamToScreenCapture();
+        GameObject.Find("Canvas").GetComponent<Canvas>().enabled = false;
         yield return new WaitForEndOfFrame();
         Texture2D rawScreenshoot = ScreenCapture.CaptureScreenshotAsTexture();
         Texture2D screenshoot = new Texture2D(rawScreenshoot.width, rawScreenshoot.height, TextureFormat.RGB24, false);
@@ -25,6 +27,8 @@ public class Screenshot : MonoBehaviour
 
         // cleanup
         Destroy(rawScreenshoot);
+        mLinker.mCamControll.RollbackCamToLastPos();
+        GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
 
         // Convert to Sprite.
         Sprite screenshootToDisplay = Sprite.Create(screenshoot, new Rect(0, 0, screenshoot.width, screenshoot.height), 

@@ -12,4 +12,5 @@ public class Linker : MonoBehaviour
     public QuestManager mQuestManager;
     public AudioManager mAudioManager;
     public Screenshot mScreenshot;
+    public CamControll mCamControll;
 }
