@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text mTxtScore;
     public TMP_Text mTxtSpaceToContinue;
     public Button mBtnFinish, mBtnSwap;
+    public GameObject mAlbum, mCamFrame;
 
 
     void Start(){
@@ -20,6 +21,14 @@ public class UIManager : MonoBehaviour
 
     public void ShowOverlay(bool isShown){
         mOvelray.SetActive(isShown);
+    }
+
+    public void ShowAlbum(bool isShown){
+        mAlbum.SetActive(isShown);
+    }
+
+    public void ShohCamFrame(bool isShown){
+        mCamFrame.SetActive(isShown);
     }
 
     public void UpdateScore(string newScore){
