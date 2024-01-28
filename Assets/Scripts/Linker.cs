@@ -11,4 +11,5 @@ public class Linker : MonoBehaviour
     public ExpressionBanks mExpressionBanks; 
     public QuestManager mQuestManager;
     public AudioManager mAudioManager;
+    public Screenshot mScreenshot;
 }

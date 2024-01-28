@@ -24,6 +24,18 @@ public class PlayerControll : MonoBehaviour{
             mLinker.mUIManager.EnableButton(true);
             SpawnEkspresi("satisfied");
         }
+
+        if(Input.GetKeyDown(KeyCode.S) && mLinker.mQuestManager.isAbleToContinue){
+            mLinker.mUIManager.mCamFrame.SetActive(true);
+        }
+    }
+
+    public void TakeASnap(){
+        mLinker.mAudioManager.PlaySFX("Snapshoot");
+        mLinker.mScreenshot.TakeASnap();
+
+        // TODO: Add snap/blitz effect.
+        mLinker.mUIManager.mCamFrame.SetActive(false);
     }
 
     public void SwapRambut(){
@@ -46,19 +58,15 @@ public class PlayerControll : MonoBehaviour{
     }
 
     public void Finish(){
-        // if(mLinker.mQuestManager.isAbleToContinue){
-            bool isSatisfied = mLinker.mQuestManager.CheckQuest(currRambut.gameObject.name);   
-            if(isSatisfied){
-                mLinker.mAudioManager.PlaySFX("Clown");
-                SpawnEkspresi("satisfied");
-            }else{
-                string[] modes = {"Laugh", "Shocked"};
-                mLinker.mAudioManager.PlaySFX(modes[Random.Range(0,modes.Length)]);
-                SpawnEkspresi("disatisfied");
-            }
-            mLinker.mUIManager.EnableButton(false);
-        // }
+        bool isSatisfied = mLinker.mQuestManager.CheckQuest(currRambut.gameObject.name);   
+        if(isSatisfied){
+            mLinker.mAudioManager.PlaySFX("Clown");
+            SpawnEkspresi("satisfied");
+        }else{
+            string[] modes = {"Laugh", "Shocked"};
+            mLinker.mAudioManager.PlaySFX(modes[Random.Range(0,modes.Length)]);
+            SpawnEkspresi("disatisfied");
+        }
+        mLinker.mUIManager.EnableButton(false);
     }
-
-    
 }
